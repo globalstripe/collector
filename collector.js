@@ -1,6 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const client = require('prom-client');
-const port = 3002
+console.log('ProcessEnvPORT', process.env.PORT)
+const port = process.env.PORT || 3003;
+
 const app = express();
 app.use(express.json());
 

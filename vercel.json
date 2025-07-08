@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "builds": [{"src": "collector.js", "use": "@vercel/node"}],
+  "builds": [{ "src": "collector.js", "use": "@vercel/node", "config": { "NODE_ENV": "production" } }],
   "routes": [
    {
-    "src": "./(.*)",
+    "src": "/(.*)",
     "dest": "collector.js"
    }
    ]
