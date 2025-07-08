@@ -45,6 +45,11 @@ const MeasuredThroughputGauge = new client.Gauge({
 });
 
 
+// Home Page Endpoint
+app.get('/', async (req, res) => {
+    res.send('<hr>Video Player Metrics Collector <br><br> <a href="/metrics">View Metrics</a><br><hr>');
+});
+
 // Metrics endpoint for Prometheus to scrape
 app.get('/metrics', async (req, res) => {
     res.set('Content-Type', client.register.contentType);
