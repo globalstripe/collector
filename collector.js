@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
 });
 
 // Metrics endpoint for Prometheus to scrape
-app.get('/metrics', async (req, res) => {
+app.get('/collector/metrics', async (req, res) => {
     res.set('Content-Type', client.register.contentType);
     res.end(await client.register.metrics());
 });
@@ -74,7 +74,7 @@ app.get('/steering', async (req, res) => {
 
 
 
-// Endpoint to receive metrics from DASH.js
+// Endpoint to receive metrics posted from DASH.js Players
 app.post('/metrics', (req, res) => {
     console.log('Req:', req.body)
     const { bufferLevel, bitrate, rebuffering, clientId = 'default' } = req.body;
@@ -112,6 +112,7 @@ app.post('/metrics', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Player Metrics server running on port ${port}`);
+    // Endpoint that will be scraped by Prometheus
     console.log(`Metrics Endpoint: http://localhost/${port}/metrics`)
 });
 
